@@ -19,7 +19,7 @@
 ## 编译
 
 ```bash
-cd ~/printk_ws
+cd ~/2026_sentry_ws
 colcon build --packages-select sentry_decision
 source install/setup.bash
 ```
