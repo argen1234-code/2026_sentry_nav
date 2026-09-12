@@ -76,7 +76,7 @@ Rmua19RobotBaseNode::Rmua19RobotBaseNode(const rclcpp::NodeOptions & options)
   //
   using namespace std::placeholders;
   std::string robot_status_topic = "/referee_system/" + robot_name + "/robot_status";
-  robot_status_sub_ = node_->create_subscription<rmoss_interfaces::msg::RobotStatus>(
+  robot_status_sub_ = node_->create_subscription<sentry_interfaces::msg::RobotStatus>(
     robot_status_topic, 10, std::bind(&Rmua19RobotBaseNode::robot_status_cb, this, _1));
   std::string enable_power_topic = "/referee_system/" + robot_name + "/enable_power";
   enable_power_sub_ = node_->create_subscription<std_msgs::msg::Bool>(
@@ -93,13 +93,9 @@ Rmua19RobotBaseNode::Rmua19RobotBaseNode(const rclcpp::NodeOptions & options)
 }
 
 void Rmua19RobotBaseNode::robot_status_cb(
-  const rmoss_interfaces::msg::RobotStatus::SharedPtr msg)
+  const sentry_interfaces::msg::RobotStatus::SharedPtr msg)
 {
-  int remain_num = msg->total_projectiles - msg->used_projectiles;
-  if (remain_num < 0) {
-    remain_num = 0;
-  }
-  shoot_actuator_->update_remain_num(remain_num);
+  shoot_actuator_->update_remain_num(msg->projectile_allowance_17mm);
 }
 
 void Rmua19RobotBaseNode::enable_power_cb(const std_msgs::msg::Bool::SharedPtr msg)

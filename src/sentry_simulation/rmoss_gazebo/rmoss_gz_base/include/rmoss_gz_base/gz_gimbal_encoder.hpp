@@ -23,7 +23,7 @@
 
 #include "ignition/transport/Node.hh"
 #include "hardware_interface.hpp"
-#include "rmoss_interfaces/msg/gimbal.hpp"
+#include "sentry_interfaces/msg/gimbal.hpp"
 
 namespace rmoss_gz_base
 {
@@ -39,8 +39,8 @@ public:
 
 public:
   void enable(bool enable) {enable_ = enable;}
-  Sensor<rmoss_interfaces::msg::Gimbal>::SharedPtr get_position_sensor() {return position_sensor_;}
-  Sensor<rmoss_interfaces::msg::Gimbal>::SharedPtr get_velocity_sensor() {return velocity_sensor_;}
+  Sensor<sentry_interfaces::msg::Gimbal>::SharedPtr get_position_sensor() {return position_sensor_;}
+  Sensor<sentry_interfaces::msg::Gimbal>::SharedPtr get_velocity_sensor() {return velocity_sensor_;}
 
 private:
   void gz_Joint_state_cb(const ignition::msgs::Model & msg);
@@ -49,8 +49,8 @@ private:
   std::shared_ptr<ignition::transport::Node> gz_node_;
   bool enable_{false};
   // info
-  std::shared_ptr<DataSensor<rmoss_interfaces::msg::Gimbal>> position_sensor_;
-  std::shared_ptr<DataSensor<rmoss_interfaces::msg::Gimbal>> velocity_sensor_;
+  std::shared_ptr<DataSensor<sentry_interfaces::msg::Gimbal>> position_sensor_;
+  std::shared_ptr<DataSensor<sentry_interfaces::msg::Gimbal>> velocity_sensor_;
 };
 
 

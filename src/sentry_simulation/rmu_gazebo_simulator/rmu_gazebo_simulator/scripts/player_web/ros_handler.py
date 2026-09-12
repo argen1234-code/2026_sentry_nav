@@ -14,7 +14,7 @@
 
 from std_msgs.msg import Int32
 
-from rmoss_interfaces.msg import ChassisCmd, GimbalCmd, ShootCmd
+from sentry_interfaces.msg import ChassisCmd, GimbalCmd, ShootCmd
 
 
 def publish_chassis_cmd_msg(pub, x, y, w):

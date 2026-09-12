@@ -20,9 +20,9 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "rmoss_gz_base/pid.hpp"
-#include "rmoss_interfaces/msg/chassis_cmd.hpp"
+#include "sentry_interfaces/msg/chassis_cmd.hpp"
 #include "geometry_msgs/msg/twist.hpp"
-#include "rmoss_interfaces/msg/gimbal.hpp"
+#include "sentry_interfaces/msg/gimbal.hpp"
 #include "hardware_interface.hpp"
 
 namespace rmoss_gz_base
@@ -34,7 +34,7 @@ public:
   ChassisController(
     rclcpp::Node::SharedPtr node,
     Actuator<geometry_msgs::msg::Twist>::SharedPtr chassis_actuator,
-    Sensor<rmoss_interfaces::msg::Gimbal>::SharedPtr gimbal_encoder,
+    Sensor<sentry_interfaces::msg::Gimbal>::SharedPtr gimbal_encoder,
     const std::string & controller_name = "chassis_controller");
   ~ChassisController() {}
 
@@ -43,18 +43,18 @@ public:
   void reset();
 
 private:
-  void chassis_cb(const rmoss_interfaces::msg::ChassisCmd::SharedPtr msg);
+  void chassis_cb(const sentry_interfaces::msg::ChassisCmd::SharedPtr msg);
   void cmd_vel_cb(const geometry_msgs::msg::Twist::SharedPtr msg);
   void update();
 
 private:
   rclcpp::Node::SharedPtr node_;
-  rclcpp::Subscription<rmoss_interfaces::msg::ChassisCmd>::SharedPtr ros_chassis_cmd_sub_;
+  rclcpp::Subscription<sentry_interfaces::msg::ChassisCmd>::SharedPtr ros_chassis_cmd_sub_;
   rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr ros_cmd_vel_sub_;
   rclcpp::TimerBase::SharedPtr controller_timer_;
   // actuator and sensor
   Actuator<geometry_msgs::msg::Twist>::SharedPtr chassis_actuator_;
-  Sensor<rmoss_interfaces::msg::Gimbal>::SharedPtr gimbal_encoder_;
+  Sensor<sentry_interfaces::msg::Gimbal>::SharedPtr gimbal_encoder_;
   // target data
   double target_vx_{0};
   double target_vy_{0};

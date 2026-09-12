@@ -2,7 +2,7 @@
 import sys
 
 import rclpy
-from rmoss_interfaces.msg import ShootCmd
+from sentry_interfaces.msg import ShootCmd
 
 def getShootCmdMsg(num,vel):
     msg = ShootCmd()

@@ -13,7 +13,7 @@
 
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>
-  <depend>rmoss_interfaces</depend>
+  <depend>sentry_interfaces</depend>
   <depend>image_transport</depend>
   <depend>ros_gz_bridge</depend>
 

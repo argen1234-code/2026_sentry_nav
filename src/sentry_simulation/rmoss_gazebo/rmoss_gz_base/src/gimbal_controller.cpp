@@ -23,8 +23,8 @@ namespace rmoss_gz_base
 
 GimbalController::GimbalController(
   rclcpp::Node::SharedPtr node,
-  Actuator<rmoss_interfaces::msg::Gimbal>::SharedPtr gimbal_vel_actuator,
-  Sensor<rmoss_interfaces::msg::Gimbal>::SharedPtr gimbal_pos_sensor,
+  Actuator<sentry_interfaces::msg::Gimbal>::SharedPtr gimbal_vel_actuator,
+  Sensor<sentry_interfaces::msg::Gimbal>::SharedPtr gimbal_pos_sensor,
   const std::string & controller_name)
 : node_(node), gimbal_vel_actuator_(gimbal_vel_actuator), gimbal_pos_sensor_(gimbal_pos_sensor)
 {
@@ -37,7 +37,7 @@ GimbalController::GimbalController(
   set_yaw_pid(yaw_pid_param_);
   // sensor callback
   gimbal_pos_sensor->add_callback(
-    [this](const rmoss_interfaces::msg::Gimbal & data, const rclcpp::Time & /*stamp*/) {
+    [this](const sentry_interfaces::msg::Gimbal & data, const rclcpp::Time & /*stamp*/) {
       cur_yaw_ = data.yaw;
       cur_pitch_ = data.pitch;
     });
@@ -46,9 +46,9 @@ GimbalController::GimbalController(
   auto rmoss_gimbal_cmd_topic = "robot_base/gimbal_cmd";
   auto rmoss_gimbal_state_topic = "robot_base/gimbal_state";
   auto gimbal_joint_cmd_topic = "cmd_gimbal_joint";
-  rmoss_gimbal_state_pub_ = node_->create_publisher<rmoss_interfaces::msg::Gimbal>(
+  rmoss_gimbal_state_pub_ = node_->create_publisher<sentry_interfaces::msg::Gimbal>(
     rmoss_gimbal_state_topic, 10);
-  rmoss_gimbal_cmd_sub_ = node_->create_subscription<rmoss_interfaces::msg::GimbalCmd>(
+  rmoss_gimbal_cmd_sub_ = node_->create_subscription<sentry_interfaces::msg::GimbalCmd>(
     rmoss_gimbal_cmd_topic, 10, std::bind(&GimbalController::gimbal_cb, this, _1));
   ros_gimbal_cmd_sub_ = node_->create_subscription<sensor_msgs::msg::JointState>(
     gimbal_joint_cmd_topic, 10, std::bind(&GimbalController::gimbal_joint_cb, this, _1));
@@ -66,7 +66,7 @@ GimbalController::GimbalController(
 
 void GimbalController::update()
 {
-  rmoss_interfaces::msg::Gimbal cmd;
+  sentry_interfaces::msg::Gimbal cmd;
   // pid for pitch
   double pitch_err = cur_pitch_ - target_pitch_;
   cmd.pitch = picth_pid_.Update(pitch_err, pid_period_);
@@ -79,7 +79,7 @@ void GimbalController::update()
 
 void GimbalController::gimbal_state_timer_cb()
 {
-  rmoss_interfaces::msg::Gimbal gimbal_pos;
+  sentry_interfaces::msg::Gimbal gimbal_pos;
   gimbal_pos.pitch = cur_pitch_;
   gimbal_pos.yaw = cur_yaw_;
   rmoss_gimbal_state_pub_->publish(gimbal_pos);
@@ -104,13 +104,11 @@ void GimbalController::gimbal_joint_cb(const sensor_msgs::msg::JointState::Share
   target_pitch_ = std::clamp(target_pitch_, -1.0, 1.0);
 }
 
-void GimbalController::gimbal_cb(const rmoss_interfaces::msg::GimbalCmd::SharedPtr msg)
+void GimbalController::gimbal_cb(const sentry_interfaces::msg::GimbalCmd::SharedPtr msg)
 {
   // for pitch
   if (msg->pitch_type == msg->ABSOLUTE_ANGLE) {
     target_pitch_ = msg->position.pitch;
-  } else if (msg->pitch_type == msg->RELATIVE_ANGLE) {
-    target_pitch_ = cur_pitch_ + msg->position.pitch;
   } else {
     RCLCPP_WARN(node_->get_logger(), "pitch cmd type[%d] isn't supported!", msg->pitch_type);
   }
@@ -120,8 +118,6 @@ void GimbalController::gimbal_cb(const rmoss_interfaces::msg::GimbalCmd::SharedP
   // for yaw
   if (msg->yaw_type == msg->ABSOLUTE_ANGLE) {
     target_yaw_ = msg->position.yaw;
-  } else if (msg->yaw_type == msg->RELATIVE_ANGLE) {
-    target_yaw_ = cur_yaw_ + msg->position.yaw;
   } else {
     RCLCPP_WARN(node_->get_logger(), "yaw cmd type[%d] isn't supported!", msg->yaw_type);
   }

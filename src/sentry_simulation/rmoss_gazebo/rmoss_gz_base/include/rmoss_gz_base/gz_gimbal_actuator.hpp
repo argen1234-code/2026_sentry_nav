@@ -20,12 +20,12 @@
 
 #include "ignition/transport/Node.hh"
 #include "hardware_interface.hpp"
-#include "rmoss_interfaces/msg/gimbal.hpp"
+#include "sentry_interfaces/msg/gimbal.hpp"
 
 namespace rmoss_gz_base
 {
 
-class IgnGimbalActuator : public Actuator<rmoss_interfaces::msg::Gimbal>
+class IgnGimbalActuator : public Actuator<sentry_interfaces::msg::Gimbal>
 {
 public:
   IgnGimbalActuator(
@@ -34,7 +34,7 @@ public:
     const std::string & gz_pitch_topic,
     const std::string & gz_yaw_topic);
 
-  void set(const rmoss_interfaces::msg::Gimbal & data) override;
+  void set(const sentry_interfaces::msg::Gimbal & data) override;
   void enable(bool enable) {enable_ = enable;}
 
 private:

@@ -32,7 +32,7 @@ IgnGimbalActuator::IgnGimbalActuator(
     gz_node_->Advertise<ignition::msgs::Double>(gz_yaw_topic));
 }
 
-void IgnGimbalActuator::set(const rmoss_interfaces::msg::Gimbal & data)
+void IgnGimbalActuator::set(const sentry_interfaces::msg::Gimbal & data)
 {
   if (!enable_) {
     return;

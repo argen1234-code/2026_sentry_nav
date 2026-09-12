@@ -3,10 +3,6 @@ repositories:
     type: git
     url: https://github.com/gezp/sdformat_tools.git
     version: 47c2d1a37372281e5627d444f7537efc0bba11df
-  rmoss_interfaces:
-    type: git
-    url: https://github.com/SMBU-PolarBear-Robotics-Team/rmoss_interfaces.git
-    version: 424f50c831b3e74fa72446969362cdabb2e22cd1
   rmoss_core:
     type: git
     url: https://github.com/SMBU-PolarBear-Robotics-Team/rmoss_core.git

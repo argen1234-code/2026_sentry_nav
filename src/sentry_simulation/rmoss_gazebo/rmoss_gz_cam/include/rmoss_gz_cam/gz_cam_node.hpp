@@ -25,7 +25,7 @@
 #include "sensor_msgs/msg/image.hpp"
 #include "sensor_msgs/msg/camera_info.hpp"
 #include "image_transport/image_transport.hpp"
-#include "rmoss_interfaces/srv/get_camera_info.hpp"
+#include "sentry_interfaces/srv/get_camera_info.hpp"
 
 namespace rmoss_gz_cam
 {
@@ -42,8 +42,8 @@ public:
 private:
   void gz_image_cb(const ignition::msgs::Image & msg);
   void get_camera_info_cb(
-    const rmoss_interfaces::srv::GetCameraInfo::Request::SharedPtr request,
-    rmoss_interfaces::srv::GetCameraInfo::Response::SharedPtr response);
+    const sentry_interfaces::srv::GetCameraInfo::Request::SharedPtr request,
+    sentry_interfaces::srv::GetCameraInfo::Response::SharedPtr response);
 
 private:
   rclcpp::Node::SharedPtr node_;
@@ -52,7 +52,7 @@ private:
   std::shared_ptr<image_transport::Publisher> img_pub_;
   // image_transporter for camera publisher
   std::shared_ptr<image_transport::CameraPublisher> cam_pub_;
-  rclcpp::Service<rmoss_interfaces::srv::GetCameraInfo>::SharedPtr get_camera_info_srv_;
+  rclcpp::Service<sentry_interfaces::srv::GetCameraInfo>::SharedPtr get_camera_info_srv_;
   // params
   std::string camera_name_{"camera"};
   std::string camera_frame_id_{""};

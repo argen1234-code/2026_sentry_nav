@@ -21,8 +21,8 @@ from rclpy.node import Node
 from std_msgs.msg import Bool, String
 from tf2_msgs.msg import TFMessage
 
-from rmoss_interfaces.msg import RefereeCmd, RfidStatusArray, RobotStatus
-from rmoss_interfaces.srv import ExchangeAmmon
+from sentry_interfaces.msg import RefereeCmd, RfidStatusArray, RobotStatus
+from sentry_interfaces.srv import ExchangeAmmon
 
 
 def parse_attack_info(attack_str):

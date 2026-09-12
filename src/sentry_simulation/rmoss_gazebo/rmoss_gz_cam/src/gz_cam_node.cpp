@@ -85,7 +85,7 @@ GzCamNode::GzCamNode(const rclcpp::NodeOptions & options)
   }
   // create GetCameraInfo service
   using namespace std::placeholders;
-  get_camera_info_srv_ = node_->create_service<rmoss_interfaces::srv::GetCameraInfo>(
+  get_camera_info_srv_ = node_->create_service<sentry_interfaces::srv::GetCameraInfo>(
     camera_name_ + "/get_camera_info", std::bind(&GzCamNode::get_camera_info_cb, this, _1, _2));
   RCLCPP_INFO(node_->get_logger(), "init successfully!");
 }
@@ -113,8 +113,8 @@ void GzCamNode::gz_image_cb(const ignition::msgs::Image & msg)
 }
 
 void GzCamNode::get_camera_info_cb(
-  const rmoss_interfaces::srv::GetCameraInfo::Request::SharedPtr request,
-  rmoss_interfaces::srv::GetCameraInfo::Response::SharedPtr response)
+  const sentry_interfaces::srv::GetCameraInfo::Request::SharedPtr request,
+  sentry_interfaces::srv::GetCameraInfo::Response::SharedPtr response)
 {
   (void)request;
   if (cam_info_valid_) {

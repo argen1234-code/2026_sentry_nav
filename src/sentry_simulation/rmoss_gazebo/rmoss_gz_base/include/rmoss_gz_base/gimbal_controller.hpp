@@ -19,9 +19,9 @@
 #include <string>
 
 #include "rclcpp/rclcpp.hpp"
-#include "rmoss_interfaces/msg/gimbal_cmd.hpp"
+#include "sentry_interfaces/msg/gimbal_cmd.hpp"
 #include "sensor_msgs/msg/joint_state.hpp"
-#include "rmoss_interfaces/msg/gimbal.hpp"
+#include "sentry_interfaces/msg/gimbal.hpp"
 #include "pid.hpp"
 #include "hardware_interface.hpp"
 
@@ -33,8 +33,8 @@ class GimbalController
 public:
   GimbalController(
     rclcpp::Node::SharedPtr node,
-    Actuator<rmoss_interfaces::msg::Gimbal>::SharedPtr gimbal_vel_actuator,
-    Sensor<rmoss_interfaces::msg::Gimbal>::SharedPtr gimbal_pos_sensor,
+    Actuator<sentry_interfaces::msg::Gimbal>::SharedPtr gimbal_vel_actuator,
+    Sensor<sentry_interfaces::msg::Gimbal>::SharedPtr gimbal_pos_sensor,
     const std::string & controller_name = "gimbal_controller");
   ~GimbalController() {}
 
@@ -47,7 +47,7 @@ public:
   void reset();
 
 private:
-  void gimbal_cb(const rmoss_interfaces::msg::GimbalCmd::SharedPtr msg);
+  void gimbal_cb(const sentry_interfaces::msg::GimbalCmd::SharedPtr msg);
   void gimbal_joint_cb(const sensor_msgs::msg::JointState::SharedPtr msg);
   void update();
   void gimbal_state_timer_cb();
@@ -55,14 +55,14 @@ private:
 private:
   rclcpp::Node::SharedPtr node_;
   // ros pub and sub
-  rclcpp::Subscription<rmoss_interfaces::msg::GimbalCmd>::SharedPtr rmoss_gimbal_cmd_sub_;
+  rclcpp::Subscription<sentry_interfaces::msg::GimbalCmd>::SharedPtr rmoss_gimbal_cmd_sub_;
   rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr ros_gimbal_cmd_sub_;
-  rclcpp::Publisher<rmoss_interfaces::msg::Gimbal>::SharedPtr rmoss_gimbal_state_pub_;
+  rclcpp::Publisher<sentry_interfaces::msg::Gimbal>::SharedPtr rmoss_gimbal_state_pub_;
   rclcpp::TimerBase::SharedPtr controller_timer_;
   rclcpp::TimerBase::SharedPtr gimbal_state_timer_;
   // control interface
-  Actuator<rmoss_interfaces::msg::Gimbal>::SharedPtr gimbal_vel_actuator_;
-  Sensor<rmoss_interfaces::msg::Gimbal>::SharedPtr gimbal_pos_sensor_;
+  Actuator<sentry_interfaces::msg::Gimbal>::SharedPtr gimbal_vel_actuator_;
+  Sensor<sentry_interfaces::msg::Gimbal>::SharedPtr gimbal_pos_sensor_;
   // target data
   double target_pitch_{0};
   double target_yaw_{0};

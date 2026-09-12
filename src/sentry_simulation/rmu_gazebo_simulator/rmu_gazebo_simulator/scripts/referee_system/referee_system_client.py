@@ -19,7 +19,7 @@ import tty
 
 import rclpy
 
-from rmoss_interfaces.msg import RefereeCmd
+from sentry_interfaces.msg import RefereeCmd
 
 banner = """
 This node takes keypresses from the keyboard and publishes them

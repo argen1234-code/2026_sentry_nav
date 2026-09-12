@@ -14,7 +14,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
 find_package(sensor_msgs REQUIRED)
-find_package(rmoss_interfaces REQUIRED)
+find_package(sentry_interfaces REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(ros_gz_bridge REQUIRED)
 
@@ -40,7 +40,7 @@ set(dependencies
   rclcpp
   rclcpp_components
   sensor_msgs
-  rmoss_interfaces
+  sentry_interfaces
   image_transport
   ros_gz_bridge
 )

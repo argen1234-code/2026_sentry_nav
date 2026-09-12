@@ -2,7 +2,7 @@
 import sys
 
 import rclpy
-from rmoss_interfaces.msg import GimbalCmd
+from sentry_interfaces.msg import GimbalCmd
 
 def getGimbalContolMsg(pitch,yaw):
     control_info = GimbalCmd()

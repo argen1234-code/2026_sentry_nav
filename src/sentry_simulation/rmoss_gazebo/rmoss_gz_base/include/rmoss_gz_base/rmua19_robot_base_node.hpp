@@ -31,7 +31,7 @@
 #include "rmoss_gz_base/gimbal_controller.hpp"
 #include "rmoss_gz_base/shooter_controller.hpp"
 #include "rmoss_gz_base/odometry_publisher.hpp"
-#include "rmoss_interfaces/msg/robot_status.hpp"
+#include "sentry_interfaces/msg/robot_status.hpp"
 #include "std_msgs/msg/bool.hpp"
 #include "rmoss_gz_base/pid.hpp"
 
@@ -49,7 +49,7 @@ public:
     return node_->get_node_base_interface();
   }
 
-  void robot_status_cb(const rmoss_interfaces::msg::RobotStatus::SharedPtr msg);
+  void robot_status_cb(const sentry_interfaces::msg::RobotStatus::SharedPtr msg);
   void enable_power_cb(const std_msgs::msg::Bool::SharedPtr msg);
   void enable_control_cb(const std_msgs::msg::Bool::SharedPtr msg);
 
@@ -57,7 +57,7 @@ private:
   rclcpp::Node::SharedPtr node_;
   std::shared_ptr<ignition::transport::Node> gz_node_;
   // ros sub
-  rclcpp::Subscription<rmoss_interfaces::msg::RobotStatus>::SharedPtr robot_status_sub_;
+  rclcpp::Subscription<sentry_interfaces::msg::RobotStatus>::SharedPtr robot_status_sub_;
   rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr enable_power_sub_;
   rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr enable_control_sub_;
   // ign actuator moudule

@@ -48,7 +48,7 @@ from ros_handler import (
 from sensor_msgs.msg import Image
 from vision_interfaces.msg import AutoAim
 
-from rmoss_interfaces.msg import (
+from sentry_interfaces.msg import (
     ChassisCmd,
     GimbalCmd,
     RfidStatus,
@@ -56,7 +56,7 @@ from rmoss_interfaces.msg import (
     RobotStatus,
     ShootCmd,
 )
-from rmoss_interfaces.srv import ExchangeAmmon
+from sentry_interfaces.srv import ExchangeAmmon
 
 # ==========================================
 #    robot list

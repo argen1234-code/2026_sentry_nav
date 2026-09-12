@@ -20,8 +20,8 @@
 #include <memory>
 #include <string>
 
-#include <rmoss_interfaces/msg/rfid_status_array.hpp>
-#include <rmoss_interfaces/msg/rfid_status.hpp>
+#include <sentry_interfaces/msg/rfid_status_array.hpp>
+#include <sentry_interfaces/msg/rfid_status.hpp>
 #include "ignition/transport/Node.hh"
 #include "rclcpp/rclcpp.hpp"
 #include "tf2_msgs/msg/tf_message.hpp"
@@ -48,12 +48,12 @@ private:
   rclcpp::Node::SharedPtr node_;
   std::shared_ptr<ignition::transport::Node> gz_node_;
   // ros publisher
-  rclcpp::Publisher<rmoss_interfaces::msg::RfidStatusArray>::SharedPtr rfid_pub_;
+  rclcpp::Publisher<sentry_interfaces::msg::RfidStatusArray>::SharedPtr rfid_pub_;
   // rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr enable_control_sub_;
   std::string gz_blue_supplier_service_name_;
   std::string gz_red_supplier_service_name_;
 
-  rmoss_interfaces::msg::RfidStatusArray rfid_status_array;
+  sentry_interfaces::msg::RfidStatusArray rfid_status_array;
 
   bool robot_filter_;
 };

@@ -7,7 +7,7 @@ else:
     import tty
 
 import rclpy
-from rmoss_interfaces.msg import GimbalCmd
+from sentry_interfaces.msg import GimbalCmd
 
 msg = """
 This node takes keypresses from the keyboard and publishes them

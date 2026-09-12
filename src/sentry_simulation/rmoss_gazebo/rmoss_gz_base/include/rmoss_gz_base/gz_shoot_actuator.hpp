@@ -19,13 +19,13 @@
 #include <string>
 
 #include "ignition/transport/Node.hh"
-#include "rmoss_interfaces/msg/shoot_cmd.hpp"
+#include "sentry_interfaces/msg/shoot_cmd.hpp"
 #include "hardware_interface.hpp"
 
 namespace rmoss_gz_base
 {
 
-class IgnShootActuator : public Actuator<rmoss_interfaces::msg::ShootCmd>
+class IgnShootActuator : public Actuator<sentry_interfaces::msg::ShootCmd>
 {
 public:
   IgnShootActuator(
@@ -35,7 +35,7 @@ public:
     const std::string & shooter_name);
   ~IgnShootActuator() {}
 
-  void set(const rmoss_interfaces::msg::ShootCmd & data) override;
+  void set(const sentry_interfaces::msg::ShootCmd & data) override;
   void enable(bool enable) {enable_ = enable;}
   void update_remain_num(int num) {remain_num_ = num;}
 

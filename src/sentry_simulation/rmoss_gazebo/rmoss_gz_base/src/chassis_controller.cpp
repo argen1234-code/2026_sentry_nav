@@ -22,7 +22,7 @@ namespace rmoss_gz_base
 ChassisController::ChassisController(
   rclcpp::Node::SharedPtr node,
   Actuator<geometry_msgs::msg::Twist>::SharedPtr chassis_actuator,
-  Sensor<rmoss_interfaces::msg::Gimbal>::SharedPtr gimbal_encoder,
+  Sensor<sentry_interfaces::msg::Gimbal>::SharedPtr gimbal_encoder,
   const std::string & controller_name)
 : node_(node), chassis_actuator_(chassis_actuator), gimbal_encoder_(gimbal_encoder)
 {
@@ -33,13 +33,13 @@ ChassisController::ChassisController(
   set_chassis_pid(chassis_pid_param_);
   // sensor data
   gimbal_encoder_->add_callback(
-    [this](const rmoss_interfaces::msg::Gimbal & data, const rclcpp::Time & /*stamp*/) {
+    [this](const sentry_interfaces::msg::Gimbal & data, const rclcpp::Time & /*stamp*/) {
       // Limit yaw data to [0, 2*PI)
       cur_yaw_ = std::remainder(data.yaw, 2 * M_PI);
     });
   // ros sub
   using namespace std::placeholders;
-  ros_chassis_cmd_sub_ = node_->create_subscription<rmoss_interfaces::msg::ChassisCmd>(
+  ros_chassis_cmd_sub_ = node_->create_subscription<sentry_interfaces::msg::ChassisCmd>(
     "robot_base/chassis_cmd", 10, std::bind(&ChassisController::chassis_cb, this, _1));
   ros_cmd_vel_sub_ = node_->create_subscription<geometry_msgs::msg::Twist>(
     "cmd_vel", 10, std::bind(&ChassisController::cmd_vel_cb, this, _1));
@@ -67,7 +67,7 @@ void ChassisController::update()
   chassis_actuator_->set(result_vel);
 }
 
-void ChassisController::chassis_cb(const rmoss_interfaces::msg::ChassisCmd::SharedPtr msg)
+void ChassisController::chassis_cb(const sentry_interfaces::msg::ChassisCmd::SharedPtr msg)
 {
   if (msg->type == msg->VELOCITY) {
     target_vel_ = msg->twist;

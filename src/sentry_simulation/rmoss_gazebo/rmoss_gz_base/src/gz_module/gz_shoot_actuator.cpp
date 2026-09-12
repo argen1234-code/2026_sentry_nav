@@ -35,7 +35,7 @@ IgnShootActuator::IgnShootActuator(
     gz_node_->Advertise<ignition::msgs::Double>(gz_set_vel_topic));
 }
 
-void IgnShootActuator::set(const rmoss_interfaces::msg::ShootCmd & data)
+void IgnShootActuator::set(const sentry_interfaces::msg::ShootCmd & data)
 {
   if (remain_num_ <= 0) {
     enable_ = false;

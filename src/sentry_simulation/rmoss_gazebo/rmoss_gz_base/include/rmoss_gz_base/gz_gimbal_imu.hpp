@@ -21,7 +21,7 @@
 #include "ignition/transport/Node.hh"
 #include "hardware_interface.hpp"
 #include "rclcpp/clock.hpp"
-#include "rmoss_interfaces/msg/gimbal.hpp"
+#include "sentry_interfaces/msg/gimbal.hpp"
 
 namespace rmoss_gz_base
 {
@@ -36,7 +36,7 @@ public:
   ~IgnGimbalImu() {}
 
   void enable(bool enable) {enable_ = enable;}
-  Sensor<rmoss_interfaces::msg::Gimbal>::SharedPtr get_position_sensor() {return position_sensor_;}
+  Sensor<sentry_interfaces::msg::Gimbal>::SharedPtr get_position_sensor() {return position_sensor_;}
 
 private:
   void gz_imu_cb(const ignition::msgs::IMU & msg);
@@ -48,8 +48,8 @@ private:
   // sensor data
   double last_yaw_angle_{0};
   double continuous_yaw_angle_{0};
-  rmoss_interfaces::msg::Gimbal cur_position_;
-  std::shared_ptr<DataSensor<rmoss_interfaces::msg::Gimbal>> position_sensor_;
+  sentry_interfaces::msg::Gimbal cur_position_;
+  std::shared_ptr<DataSensor<sentry_interfaces::msg::Gimbal>> position_sensor_;
 };
 
 }  // namespace rmoss_gz_base

@@ -48,7 +48,7 @@ IgnGimbalImu::IgnGimbalImu(
 : node_(node), gz_node_(gz_node)
 {
   gz_node_->Subscribe(gz_gimbal_imu_topic, &IgnGimbalImu::gz_imu_cb, this);
-  position_sensor_ = std::make_shared<DataSensor<rmoss_interfaces::msg::Gimbal>>();
+  position_sensor_ = std::make_shared<DataSensor<sentry_interfaces::msg::Gimbal>>();
 }
 
 void IgnGimbalImu::gz_imu_cb(const ignition::msgs::IMU & msg)

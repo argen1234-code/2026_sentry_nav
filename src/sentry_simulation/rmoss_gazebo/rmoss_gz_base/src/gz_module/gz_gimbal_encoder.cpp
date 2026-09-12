@@ -29,8 +29,8 @@ IgnGimbalEncoder::IgnGimbalEncoder(
 : node_(node), gz_node_(gz_node)
 {
   gz_node_->Subscribe(gz_joint_state_topic, &IgnGimbalEncoder::gz_Joint_state_cb, this);
-  position_sensor_ = std::make_shared<DataSensor<rmoss_interfaces::msg::Gimbal>>();
-  velocity_sensor_ = std::make_shared<DataSensor<rmoss_interfaces::msg::Gimbal>>();
+  position_sensor_ = std::make_shared<DataSensor<sentry_interfaces::msg::Gimbal>>();
+  velocity_sensor_ = std::make_shared<DataSensor<sentry_interfaces::msg::Gimbal>>();
 }
 
 void IgnGimbalEncoder::gz_Joint_state_cb(const ignition::msgs::Model & msg)
@@ -38,7 +38,7 @@ void IgnGimbalEncoder::gz_Joint_state_cb(const ignition::msgs::Model & msg)
   if (!enable_) {
     return;
   }
-  rmoss_interfaces::msg::Gimbal position, velocity;
+  sentry_interfaces::msg::Gimbal position, velocity;
   for (int i = 0; i < msg.joint_size(); i++) {
     if (msg.joint(i).name().find("gimbal_pitch_odom_joint") != std::string::npos) {
       position.pitch += msg.joint(i).axis1().position();

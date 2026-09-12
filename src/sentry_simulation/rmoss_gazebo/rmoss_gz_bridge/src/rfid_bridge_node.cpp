@@ -14,7 +14,7 @@
 
 #include "rmoss_gz_bridge/rfid_bridge_node.hpp"
 
-#include <rmoss_interfaces/msg/detail/rfid_status_array__struct.hpp>
+#include <sentry_interfaces/msg/detail/rfid_status_array__struct.hpp>
 #include <std_msgs/msg/detail/string__struct.hpp>
 
 #include <thread>
@@ -43,7 +43,7 @@ RfidBridgeNode::RfidBridgeNode(const rclcpp::NodeOptions & options)
   gz_node_->Subscribe(gz_blue_supplier_rfid_topic, &RfidBridgeNode::gz_rfid_cb, this);
   gz_node_->Subscribe(gz_red_supplier_rfid_topic, &RfidBridgeNode::gz_rfid_cb, this);
 
-  rfid_pub_ = node_->create_publisher<rmoss_interfaces::msg::RfidStatusArray>(
+  rfid_pub_ = node_->create_publisher<sentry_interfaces::msg::RfidStatusArray>(
     "/referee_system/rfid_info", 10);
 }
 
@@ -54,10 +54,11 @@ void RfidBridgeNode::gz_rfid_cb(const ignition::msgs::Pose & msg)
     if (p.key() == "frame_id") {
       if (p.value().size() > 0) {
         std::string value = p.value().Get(0);
-        rmoss_interfaces::msg::RfidStatus rfid_status;
+        sentry_interfaces::msg::RfidStatus rfid_status;
         if (value.find("red_supplier") != std::string::npos) {
-          rfid_status.robot_name = robot_name;
-          rfid_status.supplier_area_is_triggered = true;
+          (void)robot_name;
+          // The unified RFID message represents supplier activation as a gain point.
+          rfid_status.friendly_supply_zone_exchange = true;
           rfid_status_array.robot_rfid_status.push_back(rfid_status);
           break;
         }

@@ -4,7 +4,7 @@ import termios
 import tty
 
 import rclpy
-from rmoss_interfaces.msg import ChassisCmd
+from sentry_interfaces.msg import ChassisCmd
 
 msg = """
 This node takes keypresses from the keyboard and publishes them

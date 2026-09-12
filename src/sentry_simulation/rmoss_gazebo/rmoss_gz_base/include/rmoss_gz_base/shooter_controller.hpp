@@ -22,7 +22,7 @@
 #include "ignition/transport/Node.hh"
 #include "rclcpp/rclcpp.hpp"
 #include "example_interfaces/msg/u_int8.hpp"
-#include "rmoss_interfaces/msg/shoot_cmd.hpp"
+#include "sentry_interfaces/msg/shoot_cmd.hpp"
 #include "hardware_interface.hpp"
 
 namespace rmoss_gz_base
@@ -33,20 +33,20 @@ class ShooterController
 public:
   ShooterController(
     rclcpp::Node::SharedPtr node,
-    Actuator<rmoss_interfaces::msg::ShootCmd>::SharedPtr shoot_actuator,
+    Actuator<sentry_interfaces::msg::ShootCmd>::SharedPtr shoot_actuator,
     const std::string & controller_name = "chassis_controller");
   ~ShooterController() {}
 
 private:
-  void rmoss_shoot_cb(const rmoss_interfaces::msg::ShootCmd::SharedPtr msg);
+  void rmoss_shoot_cb(const sentry_interfaces::msg::ShootCmd::SharedPtr msg);
   void ros_shoot_cb(const example_interfaces::msg::UInt8::SharedPtr msg);
 
 private:
   rclcpp::Node::SharedPtr node_;
   // ros pub and sub
-  rclcpp::Subscription<rmoss_interfaces::msg::ShootCmd>::SharedPtr rmoss_shoot_cmd_sub_;
+  rclcpp::Subscription<sentry_interfaces::msg::ShootCmd>::SharedPtr rmoss_shoot_cmd_sub_;
   rclcpp::Subscription<example_interfaces::msg::UInt8>::SharedPtr ros_shoot_cmd_sub_;
-  Actuator<rmoss_interfaces::msg::ShootCmd>::SharedPtr shoot_actuator_;
+  Actuator<sentry_interfaces::msg::ShootCmd>::SharedPtr shoot_actuator_;
 };
 }  // namespace rmoss_gz_base
 #endif  // RMOSS_GZ_BASE__SHOOTER_CONTROLLER_HPP_
