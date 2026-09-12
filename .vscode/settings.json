@@ -1,0 +1,37 @@
+{
+    "ROS2.distro": "humble",
+    "python.autoComplete.extraPaths": [
+        "/home/gzu-prink/printk_ws/install/sentry_decision/local/lib/python3.10/dist-packages",
+        "/home/gzu-prink/printk_ws/build/sdformat_tools",
+        "/home/gzu-prink/printk_ws/install/sdformat_tools/lib/python3.10/site-packages",
+        "/home/gzu-prink/printk_ws/install/rmoss_interfaces/local/lib/python3.10/dist-packages",
+        "/home/gzu-prink/printk_ws/install/pb_rm_interfaces/local/lib/python3.10/dist-packages",
+        "/home/gzu-prink/printk_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages",
+        "/home/gzu-prink/printk_ws/build/joint_state_publisher_gui",
+        "/home/gzu-prink/printk_ws/install/joint_state_publisher_gui/lib/python3.10/site-packages",
+        "/home/gzu-prink/printk_ws/build/joint_state_publisher",
+        "/home/gzu-prink/printk_ws/install/joint_state_publisher/lib/python3.10/site-packages",
+        "/home/gzu-prink/printk_ws/build/extra_cmd",
+        "/home/gzu-prink/printk_ws/install/extra_cmd/lib/python3.10/site-packages",
+        "/home/gzu-prink/printk_ws/install/auto_aim_interfaces/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/gzu-prink/printk_ws/install/sentry_decision/local/lib/python3.10/dist-packages",
+        "/home/gzu-prink/printk_ws/build/sdformat_tools",
+        "/home/gzu-prink/printk_ws/install/sdformat_tools/lib/python3.10/site-packages",
+        "/home/gzu-prink/printk_ws/install/rmoss_interfaces/local/lib/python3.10/dist-packages",
+        "/home/gzu-prink/printk_ws/install/pb_rm_interfaces/local/lib/python3.10/dist-packages",
+        "/home/gzu-prink/printk_ws/install/livox_ros_driver2/local/lib/python3.10/dist-packages",
+        "/home/gzu-prink/printk_ws/build/joint_state_publisher_gui",
+        "/home/gzu-prink/printk_ws/install/joint_state_publisher_gui/lib/python3.10/site-packages",
+        "/home/gzu-prink/printk_ws/build/joint_state_publisher",
+        "/home/gzu-prink/printk_ws/install/joint_state_publisher/lib/python3.10/site-packages",
+        "/home/gzu-prink/printk_ws/build/extra_cmd",
+        "/home/gzu-prink/printk_ws/install/extra_cmd/lib/python3.10/site-packages",
+        "/home/gzu-prink/printk_ws/install/auto_aim_interfaces/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

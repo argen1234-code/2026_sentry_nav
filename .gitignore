@@ -1,0 +1,28 @@
+# ROS 构建产物（colcon / catkin）
+build/
+install/
+log/
+devel/
+
+# VSCode：保留配置文件，忽略索引数据库
+.vscode/*
+!.vscode/settings.json
+!.vscode/c_cpp_properties.json
+*.vc.db*
+*.vc.db-shm
+*.vc.db-wal
+
+# C/C++ 编译产物
+*.o
+*.so
+*.a
+# 例外：Livox SDK2 的预编译库需随仓库分发，否则 clone 后无法编译
+!src/sentry_hardware/livox_ros_driver2/Livox-SDK2/lib/amd64/liblivox_lidar_sdk_shared.so
+!src/sentry_hardware/livox_ros_driver2/Livox-SDK2/lib/arm64/liblivox_lidar_sdk_shared.so
+*.pyc
+__pycache__/
+
+# 编辑器/系统杂项
+*.swp
+*~
+.DS_Store

@@ -1,0 +1,37 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/gzu-prink/printk_ws/install/standard_robot_pp_ros2/include/**",
+        "/home/gzu-prink/printk_ws/install/small_gicp_relocalization/include/**",
+        "/home/gzu-prink/printk_ws/install/sentry_decision/include/**",
+        "/home/gzu-prink/printk_ws/install/sensor_scan_generation/include/**",
+        "/home/gzu-prink/printk_ws/install/rmoss_gz_bridge/include/**",
+        "/home/gzu-prink/printk_ws/install/rmoss_gz_base/include/**",
+        "/home/gzu-prink/printk_ws/install/rmoss_interfaces/include/**",
+        "/home/gzu-prink/printk_ws/install/pointcloud_to_laserscan/include/**",
+        "/home/gzu-prink/printk_ws/install/pb_teleop_twist_joy/include/**",
+        "/home/gzu-prink/printk_ws/install/pb_rm_interfaces/include/**",
+        "/home/gzu-prink/printk_ws/install/pb_omni_pid_pursuit_controller/include/**",
+        "/home/gzu-prink/printk_ws/install/pb_nav2_plugins/include/**",
+        "/home/gzu-prink/printk_ws/install/loam_interface/include/**",
+        "/home/gzu-prink/printk_ws/install/livox_ros_driver2/include/**",
+        "/home/gzu-prink/printk_ws/install/ign_sim_pointcloud_tool/include/**",
+        "/home/gzu-prink/printk_ws/install/fake_vel_transform/include/**",
+        "/home/gzu-prink/printk_ws/install/auto_aim_interfaces/include/**",
+        "/opt/ros/humble/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ros2",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
+}
