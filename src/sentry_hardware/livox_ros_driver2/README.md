@@ -8,12 +8,11 @@ Livox ROS Driver 2 is the 2nd-generation driver package used to connect LiDAR pr
 
 相较于原版，修改了消息发布机制和 ```MID360_config.json``` 的 ip
 
-```ros2 launch msg_MID360_launch.py``` 时会同时发布 ```CustomMsg``` 和 ```PointCloud2``` 两种类型消息。
+```ros2 launch livox_ros_driver2 msg_MID360_launch.py``` 默认仅发布 ```CustomMsg``` 点云；驱动仍可通过 ```xfer_format=4``` 同时发布两种格式。
 
  **Topic name**           | **Type**                        | **Note**
 :------------------------:|:-------------------------------:|:--------------:
  /livox/lidar             | livox_ros_driver2/msg/CustomMsg | mid360 自定义消息类型
- /livox/lidar/pointcloud | sensor_msgs/msg/PointCloud2     | ROS2 点云消息格式
  /livox/imu               | sensor_msgs/msg/Imu             | mid360 机内 imu
 
 本功能包已内置预编译的 Livox SDK2，无需再次克隆编译安装。

@@ -28,7 +28,8 @@
    <exec_depend>small_gicp_relocalization</exec_depend>
    <exec_depend>pointcloud_to_laserscan</exec_depend>
    <exec_depend>slam_toolbox</exec_depend>
-   <exec_depend>rviz2</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>sentry_description</exec_depend>
    <exec_depend>extra_cmd</exec_depend>
    <exec_depend>referee_serial_bridge</exec_depend>
 

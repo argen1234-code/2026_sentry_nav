@@ -11,3 +11,10 @@ slam_toolbox:
     map_update_interval: 5.0
     use_map_saver: true
     debug_logging: false
+    throttle_scans: 1
+    scan_queue_size: 10
+    min_laser_range: 0.4
+    max_laser_range: 10.0
+    minimum_time_interval: 0.2
+    transform_timeout: 0.2
+    tf_buffer_duration: 10.0

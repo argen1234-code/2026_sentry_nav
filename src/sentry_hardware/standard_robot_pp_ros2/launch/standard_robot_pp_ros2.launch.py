@@ -34,9 +34,6 @@ def generate_launch_description():
     pkg_standard_robot_pp_ros2_dir = get_package_share_directory(
         "standard_robot_pp_ros2"
     )
-    pkg_pb2025_robot_description_dir = get_package_share_directory(
-        "pb2025_robot_description"
-    )
 
     # Create the launch configuration variables
     namespace = LaunchConfiguration("namespace")
@@ -108,18 +105,12 @@ def generate_launch_description():
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(
                     os.path.join(
-                        pkg_pb2025_robot_description_dir,
+                        get_package_share_directory("sentry_description"),
                         "launch",
-                        "robot_description_launch.py",
+                        "description.launch.py",
                     )
                 ),
-                launch_arguments={
-                    "params_file": params_file,
-                    "robot_name": robot_name,
-                    "use_rviz": use_rviz,
-                    "use_respawn": use_respawn,
-                    "log_level": log_level,
-                }.items(),
+                launch_arguments={"use_sim_time": "false"}.items(),
             ),
             Node(
                 package="standard_robot_pp_ros2",

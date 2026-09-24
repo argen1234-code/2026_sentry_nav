@@ -10,8 +10,7 @@ sentry_localization Point-LIO、SLAM 和重定位
 sentry_perception   地形、障碍物和点云处理
 sentry_navigation   Nav2 插件、控制器和行为树
 sentry_decision     比赛决策
-sentry_bringup      唯一系统入口
-sentry_simulation   Gazebo 仿真
+sentry_bringup      实车一键启动和 RViz2 可视化
 ```
 
 系统入口：

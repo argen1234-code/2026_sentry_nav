@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="sentry">
-  <!-- This model is intentionally mesh-free: it is the authoritative TF model
-       for the real robot. Visual meshes belong to the simulation package. -->
+  <!-- This model is the authoritative TF and RViz visual model for the real robot. -->
   <xacro:arg name="chassis_height" default="0.077"/>
   <xacro:arg name="gimbal_yaw_height" default="0.100"/>
   <xacro:arg name="gimbal_pitch_height" default="0.155"/>
@@ -11,13 +10,56 @@
   <xacro:arg name="lidar_roll" default="-3.141592653589793"/>
 
   <link name="base_footprint"/>
-  <link name="chassis"/>
+  <link name="chassis">
+    <visual>
+      <origin xyz="0 0 0.12" rpy="0 0 0"/>
+      <geometry><box size="0.88 0.72 0.24"/></geometry>
+      <material name="chassis_black"><color rgba="0.12 0.14 0.16 1"/></material>
+    </visual>
+  </link>
   <link name="gimbal_yaw_odom"/>
   <link name="gimbal_pitch_odom"/>
-  <link name="gimbal_yaw"/>
-  <link name="gimbal_pitch"/>
-  <link name="front_mid360"/>
-  <link name="front_camera"/>
+  <link name="gimbal_yaw">
+    <visual>
+      <origin xyz="0 0 0.08" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.20" length="0.16"/></geometry>
+      <material name="gimbal_red"><color rgba="0.65 0.08 0.05 1"/></material>
+    </visual>
+  </link>
+  <link name="gimbal_pitch">
+    <visual>
+      <origin xyz="0 0 0.12" rpy="0 0 0"/>
+      <geometry><box size="0.42 0.24 0.24"/></geometry>
+      <material name="gimbal_gray"><color rgba="0.35 0.38 0.42 1"/></material>
+    </visual>
+  </link>
+  <link name="front_mid360">
+    <visual>
+      <origin xyz="0 0 0.045" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.055" length="0.09"/></geometry>
+      <material name="lidar_blue"><color rgba="0.05 0.35 0.75 1"/></material>
+    </visual>
+  </link>
+  <link name="front_camera">
+    <visual>
+      <origin xyz="0 0 0.025" rpy="0 0 0"/>
+      <geometry><box size="0.12 0.08 0.05"/></geometry>
+      <material name="camera_black"><color rgba="0.03 0.03 0.03 1"/></material>
+    </visual>
+  </link>
+
+  <link name="front_left_wheel">
+    <visual><origin xyz="0 0 0" rpy="1.5708 0 0"/><geometry><cylinder radius="0.12" length="0.08"/></geometry><material name="wheel"><color rgba="0.03 0.03 0.03 1"/></material></visual>
+  </link>
+  <link name="front_right_wheel">
+    <visual><origin xyz="0 0 0" rpy="1.5708 0 0"/><geometry><cylinder radius="0.12" length="0.08"/></geometry><material name="wheel"><color rgba="0.03 0.03 0.03 1"/></material></visual>
+  </link>
+  <link name="rear_left_wheel">
+    <visual><origin xyz="0 0 0" rpy="1.5708 0 0"/><geometry><cylinder radius="0.12" length="0.08"/></geometry><material name="wheel"><color rgba="0.03 0.03 0.03 1"/></material></visual>
+  </link>
+  <link name="rear_right_wheel">
+    <visual><origin xyz="0 0 0" rpy="1.5708 0 0"/><geometry><cylinder radius="0.12" length="0.08"/></geometry><material name="wheel"><color rgba="0.03 0.03 0.03 1"/></material></visual>
+  </link>
 
   <joint name="base_to_chassis" type="fixed">
     <parent link="base_footprint"/><child link="chassis"/>
@@ -46,5 +88,22 @@
   <joint name="front_camera_joint" type="fixed">
     <parent link="gimbal_pitch"/><child link="front_camera"/>
     <origin xyz="0.100 0 0.045" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="front_left_wheel_joint" type="fixed">
+    <parent link="chassis"/><child link="front_left_wheel"/>
+    <origin xyz="0.30 0.38 0.12" rpy="0 0 0"/>
+  </joint>
+  <joint name="front_right_wheel_joint" type="fixed">
+    <parent link="chassis"/><child link="front_right_wheel"/>
+    <origin xyz="0.30 -0.38 0.12" rpy="0 0 0"/>
+  </joint>
+  <joint name="rear_left_wheel_joint" type="fixed">
+    <parent link="chassis"/><child link="rear_left_wheel"/>
+    <origin xyz="-0.30 0.38 0.12" rpy="0 0 0"/>
+  </joint>
+  <joint name="rear_right_wheel_joint" type="fixed">
+    <parent link="chassis"/><child link="rear_right_wheel"/>
+    <origin xyz="-0.30 -0.38 0.12" rpy="0 0 0"/>
   </joint>
 </robot>

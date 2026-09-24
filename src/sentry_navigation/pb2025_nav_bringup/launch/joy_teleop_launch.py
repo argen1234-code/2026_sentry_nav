@@ -70,7 +70,7 @@ def generate_launch_description():
     declare_joy_config_file_cmd = DeclareLaunchArgument(
         "joy_config_file",
         default_value=os.path.join(
-            bringup_dir, "config", "simulation", "nav2_params.yaml"
+            bringup_dir, "config", "reality", "nav2_params.yaml"
         ),
         description="The joystick configuration file path",
     )
