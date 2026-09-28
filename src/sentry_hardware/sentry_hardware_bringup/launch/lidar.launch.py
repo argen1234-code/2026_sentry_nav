@@ -23,7 +23,7 @@ def generate_launch_description():
             ),
             DeclareLaunchArgument("frame_id", default_value="front_mid360"),
             DeclareLaunchArgument("publish_freq", default_value="20.0"),
-            DeclareLaunchArgument("xfer_format", default_value="1"),
+            DeclareLaunchArgument("xfer_format", default_value="4"),
             DeclareLaunchArgument("multi_topic", default_value="0"),
             DeclareLaunchArgument(
                 "rviz",

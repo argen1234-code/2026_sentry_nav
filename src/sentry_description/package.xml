@@ -3,7 +3,7 @@
 <package format="3">
   <name>sentry_description</name>
   <version>0.1.0</version>
-  <description>Minimal robot description and TF model for the sentry robot.</description>
+  <description>Competition robot description and TF model generated from the migrated SDF xmacro.</description>
   <maintainer email="gzu-prink@example.com">gzu-prink</maintainer>
   <license>Apache-2.0</license>
 
@@ -11,8 +11,11 @@
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
+  <exec_depend>nav2_common</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
-  <exec_depend>xacro</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>sentry_model_resources</exec_depend>
+  <exec_depend>sentry_model_tools</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

@@ -9,6 +9,11 @@
   <buildtool_depend>ament_cmake</buildtool_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
+  <exec_depend>nav2_common</exec_depend>
+  <exec_depend>rclcpp_components</exec_depend>
+  <exec_depend>extra_cmd</exec_depend>
+  <exec_depend>referee_serial_bridge</exec_depend>
+  <exec_depend>sentry_decision</exec_depend>
   <exec_depend>sentry_hardware</exec_depend>
   <exec_depend>sentry_description</exec_depend>
   <exec_depend>sentry_localization</exec_depend>
