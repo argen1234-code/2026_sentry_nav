@@ -8,13 +8,13 @@ from launch.actions import (
     DeclareLaunchArgument,
     GroupAction,
     IncludeLaunchDescription,
+    OpaqueFunction,
     TimerAction,
 )
-from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
-from launch_ros.descriptions import ParameterFile
+from launch_ros.descriptions import ParameterFile, ParameterValue
 from nav2_common.launch import ReplaceString, RewrittenYaml
 
 
@@ -25,6 +25,45 @@ def include(package, filename, arguments=None, condition=None):
         launch_arguments=(arguments or {}).items(),
         condition=condition,
     )
+
+
+def visualization_nodes(context, nav_share):
+    mode = LaunchConfiguration("visualization").perform(context)
+    if mode not in ("rviz", "headless", "foxglove"):
+        raise ValueError("visualization must be rviz, headless, or foxglove")
+
+    # Preserve use_rviz:=false from the previous startup command.
+    if mode == "rviz" and LaunchConfiguration("use_rviz").perform(context).lower() in (
+        "false", "0", "no", "off",
+    ):
+        mode = "headless"
+
+    if mode == "rviz":
+        return [Node(
+            package="rviz2", executable="rviz2", name="rviz2", output="screen",
+            arguments=["-d", os.path.join(nav_share, "rviz", "nav2_default_view.rviz")],
+        )]
+    if mode == "foxglove":
+        # Resolve the package before any hardware starts, so a missing bridge
+        # does not leave a partially running real-robot launch.
+        from ament_index_python.packages import PackageNotFoundError
+
+        try:
+            get_package_share_directory("foxglove_bridge")
+        except PackageNotFoundError as exc:
+            raise RuntimeError(
+                "Foxglove mode requires ros-humble-foxglove-bridge "
+                "(sudo apt install ros-humble-foxglove-bridge)"
+            ) from exc
+        return [Node(
+            package="foxglove_bridge", executable="foxglove_bridge",
+            name="foxglove_bridge", output="screen",
+            parameters=[{
+                "address": LaunchConfiguration("foxglove_address"),
+                "port": ParameterValue(LaunchConfiguration("foxglove_port"), value_type=int),
+            }],
+        )]
+    return []
 
 
 def generate_launch_description():
@@ -48,9 +87,22 @@ def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument("use_sim_time", default_value="false"),
         DeclareLaunchArgument("autostart", default_value="true"),
+        DeclareLaunchArgument(
+            "visualization",
+            default_value="rviz",
+            description="Visualization backend: rviz, foxglove, or headless",
+        ),
+        # Kept for compatibility with the previous entry point. Set
+        # visualization:=headless or visualization:=foxglove for other modes.
         DeclareLaunchArgument("use_rviz", default_value="true"),
+        # Listen on all interfaces so a Foxglove client on another machine can
+        # connect through the robot's LAN address. Override this with
+        # foxglove_address:=127.0.0.1 for local-only access.
+        DeclareLaunchArgument("foxglove_address", default_value="0.0.0.0"),
+        DeclareLaunchArgument("foxglove_port", default_value="8765"),
         DeclareLaunchArgument("udp_port", default_value="19002"),
         DeclareLaunchArgument("referee_device", default_value="/dev/ttyACM0"),
+        OpaqueFunction(function=visualization_nodes, args=[nav_share]),
         # Keep the description RViz disabled without overwriting this
         # bringup's own use_rviz launch configuration.
         GroupAction(
@@ -78,9 +130,6 @@ def generate_launch_description():
         include("pb2025_nav_bringup", "joy_teleop_launch.py", {
             "joy_config_file": resolved_params, "use_sim_time": use_sim_time,
         }),
-        Node(package="rviz2", executable="rviz2", name="rviz2", output="screen",
-             condition=IfCondition(LaunchConfiguration("use_rviz")),
-             arguments=["-d", os.path.join(nav_share, "rviz", "nav2_default_view.rviz")]),
         # The desktop script starts these three processes three seconds after navigation.
         TimerAction(period=3.0, actions=[
             Node(package="extra_cmd", executable="cmd_vel_to_udp", name="cmd_vel_to_udp",

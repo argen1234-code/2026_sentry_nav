@@ -21,5 +21,6 @@
   <exec_depend>pb2025_nav_bringup</exec_depend>
   <exec_depend>pointcloud_to_laserscan</exec_depend>
   <exec_depend>rviz2</exec_depend>
+  <exec_depend>foxglove_bridge</exec_depend>
   <export><build_type>ament_cmake</build_type></export>
 </package>
