@@ -41,65 +41,77 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        armor_0:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        armor_1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        armor_2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        armor_3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        armor_support_frame_0:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        armor_support_frame_1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        armor_support_frame_2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        armor_support_frame_3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         base_footprint:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        chassis:
+          Value: true
+        link1_wheel1_drive:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        front_industrial_camera:
+        link2_wheel1_steer:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        front_industrial_camera_optical_frame:
+        link3_wheel2_drive:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        front_left_wheel:
+          Value: true
+        link4_wheel2_steer:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link5_wheel3_drive:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link6_wheel3_steer:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link7_wheel4_drive:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link8_wheel4_steer:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gimbal_yaw:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link10_pitch:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link11_small_yaw:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ref_ref1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ref_ref2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ref_ref3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -109,45 +121,17 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        front_right_wheel:
+        ref_ref5:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        gimbal_pitch:
+        ref_ref6:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        gimbal_pitch_odom:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        gimbal_yaw:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        gimbal_yaw_odom:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        light_indicator:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rear_left_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rear_right_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        speed_monitor:
+        ref_ref7:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -165,58 +149,50 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        armor_0:
-          Value: true
-        armor_1:
-          Value: true
-        armor_2:
-          Value: true
-        armor_3:
-          Value: true
-        armor_support_frame_0:
-          Value: true
-        armor_support_frame_1:
-          Value: true
-        armor_support_frame_2:
-          Value: true
-        armor_support_frame_3:
-          Value: true
         base_footprint:
           Value: true
-        chassis:
-          Value: true
-        front_industrial_camera:
-          Value: true
-        front_industrial_camera_optical_frame:
-          Value: true
-        front_left_wheel:
-          Value: true
         front_mid360:
-          Value: true
-        front_right_wheel:
-          Value: true
-        gimbal_pitch:
-          Value: true
-        gimbal_pitch_odom:
           Value: true
         gimbal_yaw:
           Value: true
         gimbal_yaw_fake:
           Value: true
-        gimbal_yaw_odom:
+        link10_pitch:
           Value: true
-        light_indicator:
+        link11_small_yaw:
           Value: true
+        link1_wheel1_drive:
+          Value: false
+        link2_wheel1_steer:
+          Value: false
+        link3_wheel2_drive:
+          Value: false
+        link4_wheel2_steer:
+          Value: false
+        link5_wheel3_drive:
+          Value: false
+        link6_wheel3_steer:
+          Value: false
+        link7_wheel4_drive:
+          Value: false
+        link8_wheel4_steer:
+          Value: false
         map:
           Value: true
         odom:
           Value: true
-        rear_left_wheel:
-          Value: true
-        rear_right_wheel:
-          Value: true
-        speed_monitor:
-          Value: true
+        ref_ref1:
+          Value: false
+        ref_ref2:
+          Value: false
+        ref_ref3:
+          Value: false
+        ref_ref5:
+          Value: false
+        ref_ref6:
+          Value: false
+        ref_ref7:
+          Value: false
       Marker Scale: 1
       Name: TF
       Show Arrows: true
@@ -226,42 +202,37 @@ Visualization Manager:
         map:
           odom:
             base_footprint:
-              chassis:
-                armor_support_frame_0:
-                  armor_0:
+              gimbal_yaw:
+                front_mid360:
+                  {}
+                gimbal_yaw_fake:
+                  {}
+                link11_small_yaw:
+                  link10_pitch:
+                    ref_ref5:
+                      {}
+                    ref_ref6:
+                      {}
+                  ref_ref7:
                     {}
-                armor_support_frame_1:
-                  armor_1:
-                    {}
-                armor_support_frame_2:
-                  armor_2:
-                    {}
-                armor_support_frame_3:
-                  armor_3:
-                    {}
-                front_left_wheel:
+                ref_ref2:
                   {}
-                front_right_wheel:
+                ref_ref3:
                   {}
-                gimbal_yaw_odom:
-                  gimbal_pitch_odom:
-                    gimbal_yaw:
-                      front_mid360:
-                        {}
-                      gimbal_pitch:
-                        front_industrial_camera:
-                          front_industrial_camera_optical_frame:
-                            {}
-                        speed_monitor:
-                          {}
-                      gimbal_yaw_fake:
-                        {}
-                light_indicator:
+              link2_wheel1_steer:
+                link1_wheel1_drive:
                   {}
-                rear_left_wheel:
+              link4_wheel2_steer:
+                link3_wheel2_drive:
                   {}
-                rear_right_wheel:
+              link6_wheel3_steer:
+                link5_wheel3_drive:
                   {}
+              link8_wheel4_steer:
+                link7_wheel4_drive:
+                  {}
+              ref_ref1:
+                {}
       Update Interval: 0
       Value: true
     - Class: rviz_default_plugins/Axes
